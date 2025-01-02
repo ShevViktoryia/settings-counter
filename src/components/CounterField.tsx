@@ -4,13 +4,14 @@ type CounterProps = {
   count: number;
   maxCount: number;
   minCount: number;
+  settings: boolean;
 };
 
 export const CounterField = (props: CounterProps) => {
   return (
     <CounterFieldStyled
       style={{
-        backgroundColor:
+        color:
           props.count === props.maxCount ||
           props.minCount < 0 ||
           props.minCount === props.maxCount
@@ -19,7 +20,9 @@ export const CounterField = (props: CounterProps) => {
       }}
     >
       {props.minCount >= 0 && props.minCount !== props.maxCount
-        ? props.count
+        ? props.settings
+          ? "enter values and press 'set'"
+          : props.count
         : "Incorrect value!"}
     </CounterFieldStyled>
   );
@@ -31,5 +34,7 @@ const CounterFieldStyled = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 10px;
+  border: 2px solid #1babdb;
   border-radius: 10px;
 `;

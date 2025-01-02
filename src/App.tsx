@@ -8,6 +8,7 @@ function App() {
   let [maxCount, setMaxCount] = useState<number>(5);
 
   let [count, setCount] = useState<number>(minCount);
+  const [settings, setSettins] = useState<boolean>(false);
 
   const increaseCountHandler = () =>
     count < maxCount
@@ -21,14 +22,17 @@ function App() {
     setMinCount(newMin);
     setMaxCount(newMax);
     setCount(minCount);
+    setSettins(false);
   };
 
   const handleMinChange = (n: number) => {
     setMinCount(n);
+    setSettins(true);
   };
 
   const handleMaxChange = (n: number) => {
     setMaxCount(n);
+    setSettins(true);
   };
 
   return (
@@ -36,6 +40,7 @@ function App() {
       <ControlCounter
         maxCount={maxCount}
         minCount={minCount}
+        settings={settings}
         changeMinCount={handleMinChange}
         changeMaxCount={handleMaxChange}
         setMinMax={setMinMax}
@@ -44,6 +49,7 @@ function App() {
         count={count}
         maxCount={maxCount}
         minCount={minCount}
+        settings={settings}
         updateCount={increaseCountHandler}
         resetCount={resetCountHandler}
       />

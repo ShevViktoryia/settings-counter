@@ -6,6 +6,7 @@ import { Button } from "./Button";
 type ControlCounterType = {
   maxCount: number;
   minCount: number;
+  settings: boolean;
   setMinMax: (newMin: number, newMax: number) => void;
   changeMinCount: (newCount: number) => void;
   changeMaxCount: (newCount: number) => void;
@@ -24,6 +25,11 @@ export const ControlCounter = (props: ControlCounterType) => {
         <Button
           title="set"
           onClick={() => props.setMinMax(props.minCount, props.maxCount)}
+          isDisable={
+            props.settings === false ||
+            props.minCount === props.maxCount ||
+            props.minCount < 0
+          }
         />
       </ControlButtonsStyled>
     </CounterStyled>
