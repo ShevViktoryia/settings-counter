@@ -4,21 +4,42 @@ import { Counter } from "./components/Counter";
 import { ControlCounter } from "./components/ControlCounter";
 
 function App() {
-  const maxCount = 5;
-  const minCount = 0;
+  let [minCount, setMinCount] = useState<number>(0);
+  let [maxCount, setMaxCount] = useState<number>(5);
+
   let [count, setCount] = useState<number>(minCount);
 
   const increaseCountHandler = () =>
-    count < 5
+    count < maxCount
       ? setCount((prevCount) => Math.min(prevCount + 1, maxCount))
       : count;
   const resetCountHandler = () => {
     setCount(0);
   };
 
+  const setMinMax = (newMin: number, newMax: number) => {
+    setMinCount(newMin);
+    setMaxCount(newMax);
+    setCount(minCount);
+  };
+
+  const handleMinChange = (n: number) => {
+    setMinCount(n);
+  };
+
+  const handleMaxChange = (n: number) => {
+    setMaxCount(n);
+  };
+
   return (
     <div className="App">
-      <ControlCounter />
+      <ControlCounter
+        maxCount={maxCount}
+        minCount={minCount}
+        changeMinCount={handleMinChange}
+        changeMaxCount={handleMaxChange}
+        setMinMax={setMinMax}
+      />
       <Counter
         count={count}
         maxCount={maxCount}

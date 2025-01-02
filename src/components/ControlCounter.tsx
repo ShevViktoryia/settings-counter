@@ -3,12 +3,28 @@ import { ControlInputs } from "./ControlInputs";
 import { ControlButtonsStyled } from "./ControlButtons";
 import { Button } from "./Button";
 
-export const ControlCounter = () => {
+type ControlCounterType = {
+  maxCount: number;
+  minCount: number;
+  setMinMax: (newMin: number, newMax: number) => void;
+  changeMinCount: (newCount: number) => void;
+  changeMaxCount: (newCount: number) => void;
+};
+
+export const ControlCounter = (props: ControlCounterType) => {
   return (
     <CounterStyled>
-      <ControlInputs />
+      <ControlInputs
+        maxCount={props.maxCount}
+        minCount={props.minCount}
+        changeMaxCount={props.changeMaxCount}
+        changeMinCount={props.changeMinCount}
+      />
       <ControlButtonsStyled>
-        <Button title="set" />
+        <Button
+          title="set"
+          onClick={() => props.setMinMax(props.minCount, props.maxCount)}
+        />
       </ControlButtonsStyled>
     </CounterStyled>
   );

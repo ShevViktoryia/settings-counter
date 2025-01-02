@@ -2,14 +2,25 @@ import styled from "styled-components";
 
 type CounterProps = {
   count: number;
+  maxCount: number;
+  minCount: number;
 };
 
 export const CounterField = (props: CounterProps) => {
   return (
     <CounterFieldStyled
-      style={{ backgroundColor: props.count === 5 ? "red" : "#1babdb" }}
+      style={{
+        backgroundColor:
+          props.count === props.maxCount ||
+          props.minCount < 0 ||
+          props.minCount === props.maxCount
+            ? "red"
+            : "#1babdb",
+      }}
     >
-      {props.count}
+      {props.minCount >= 0 && props.minCount !== props.maxCount
+        ? props.count
+        : "Incorrect value!"}
     </CounterFieldStyled>
   );
 };

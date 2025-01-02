@@ -14,13 +14,13 @@ export const ControlButtons = (props: ButtonProps) => {
     <ControlButtonsStyled>
       <Button
         title="increase"
-        updateCount={props.updateCount}
+        onClick={props.updateCount}
         isDisable={props.count === props.maxCount}
       />
       <Button
         title="reset"
-        isDisable={props.count === props.minCount}
-        resetCount={props.resetCount}
+        isDisable={props.count === 0}
+        onClick={props.resetCount}
       />
     </ControlButtonsStyled>
   );

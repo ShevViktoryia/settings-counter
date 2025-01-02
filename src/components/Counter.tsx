@@ -14,7 +14,11 @@ type CounterType = {
 export const Counter = (props: CounterType) => {
   return (
     <CounterStyled>
-      <CounterField count={props.count} />
+      <CounterField
+        maxCount={props.maxCount}
+        minCount={props.minCount}
+        count={props.count}
+      />
       <ProgressBar count={props.count} maxCount={props.maxCount} />
       <ControlButtons
         minCount={props.minCount}
