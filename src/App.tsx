@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import { Counter } from "./components/Counter";
 import { ControlCounter } from "./components/ControlCounter";
@@ -9,6 +9,24 @@ function App() {
 
   let [count, setCount] = useState<number>(minCount);
   const [settings, setSettins] = useState<boolean>(false);
+
+  useEffect(() => {
+    let minValue = localStorage.getItem("min value");
+    let maxValue = localStorage.getItem("max value");
+    console.log(minValue, maxValue);
+    if (minValue && maxValue) {
+      setMinCount(JSON.parse(minValue));
+      setMaxCount(JSON.parse(maxValue));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("min value", JSON.stringify(minCount));
+  }, [minCount]);
+
+  useEffect(() => {
+    localStorage.setItem("max value", JSON.stringify(maxCount));
+  }, [maxCount]);
 
   const increaseCountHandler = () =>
     count < maxCount
