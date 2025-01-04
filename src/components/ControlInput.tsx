@@ -12,7 +12,7 @@ export const ControlInput = (props: ControlInputType) => {
       <p>{props.title + " value"}: </p>
       <input
         type="number"
-        defaultValue={props.value}
+        value={props.value}
         onChange={(e) => props.changeCount(Number(e.currentTarget.value))}
       />
     </ControlInputStyled>

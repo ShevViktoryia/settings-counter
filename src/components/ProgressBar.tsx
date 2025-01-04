@@ -24,5 +24,8 @@ const ProgressInnerStyled = styled.div<{ $count: number; $maxCount: number }>`
   background: #1babdb;
   height: 20px;
   border-radius: 10px;
-  width: ${(props) => (props.$count / props.$maxCount) * 100}%;
+  width: ${(props) =>
+    props.$count <= props.$maxCount
+      ? (props.$count / props.$maxCount) * 100
+      : props.$count}%;
 `;
