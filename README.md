@@ -1,1 +1,1 @@
-Deploy: https://ShevViktoryia.github.io/React-Counter-with-settings
+Deploy: https://ShevViktoryia.github.io/settings-counter
