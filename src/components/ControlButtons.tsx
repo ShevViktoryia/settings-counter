@@ -5,6 +5,7 @@ type ButtonProps = {
   count: number;
   maxCount: number;
   minCount: number;
+  readyForWork: boolean;
   updateCount?: () => void;
   resetCount?: () => void;
 };
@@ -15,11 +16,13 @@ export const ControlButtons = (props: ButtonProps) => {
       <Button
         title="increase"
         onClick={props.updateCount}
-        isDisable={props.count === props.maxCount}
+        isDisable={
+          props.count === props.maxCount || props.readyForWork === false
+        }
       />
       <Button
         title="reset"
-        isDisable={props.count === 0}
+        isDisable={props.count === props.minCount}
         onClick={props.resetCount}
       />
     </ControlButtonsStyled>

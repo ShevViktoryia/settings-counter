@@ -4,13 +4,21 @@ import { Counter } from "./components/Counter";
 import { ControlCounter } from "./components/ControlCounter";
 
 function App() {
-  let [minCount, setMinCount] = useState<number>(0);
-  let [maxCount, setMaxCount] = useState<number>(5);
+  const minValue = localStorage.getItem("min value");
+  const maxValue = localStorage.getItem("max value");
+  let [minCount, setMinCount] = useState<number>(
+    minValue ? JSON.parse(minValue) : 0
+  );
+  let [maxCount, setMaxCount] = useState<number>(
+    maxValue ? JSON.parse(maxValue) : 5
+  );
 
   let [count, setCount] = useState<number>(minCount);
   const [settings, setSettins] = useState<boolean>(false);
+  const [readyForWork, setReadyForWork] = useState<boolean>(false);
 
   useEffect(() => {
+    debugger;
     let minValue = localStorage.getItem("min value");
     let maxValue = localStorage.getItem("max value");
     console.log(minValue, maxValue);
@@ -20,20 +28,12 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("min value", JSON.stringify(minCount));
-  }, [minCount]);
-
-  useEffect(() => {
-    localStorage.setItem("max value", JSON.stringify(maxCount));
-  }, [maxCount]);
-
   const increaseCountHandler = () =>
     count < maxCount
       ? setCount((prevCount) => Math.min(prevCount + 1, maxCount))
       : count;
   const resetCountHandler = () => {
-    setCount(0);
+    setCount(minCount);
   };
 
   const setMinMax = (newMin: number, newMax: number) => {
@@ -41,18 +41,22 @@ function App() {
     setMaxCount(newMax);
     setCount(minCount);
     setSettins(false);
+    setReadyForWork(true);
+    localStorage.setItem("min value", JSON.stringify(newMin));
+    localStorage.setItem("max value", JSON.stringify(newMax));
   };
 
   const handleMinChange = (n: number) => {
     setMinCount(n);
     setSettins(true);
+    setReadyForWork(false);
   };
 
   const handleMaxChange = (n: number) => {
     setMaxCount(n);
     setSettins(true);
+    setReadyForWork(false);
   };
-
   return (
     <div className="App">
       <ControlCounter
@@ -68,6 +72,7 @@ function App() {
         maxCount={maxCount}
         minCount={minCount}
         settings={settings}
+        readyForWork={readyForWork}
         updateCount={increaseCountHandler}
         resetCount={resetCountHandler}
       />

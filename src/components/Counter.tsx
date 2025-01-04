@@ -8,6 +8,7 @@ type CounterType = {
   maxCount: number;
   minCount: number;
   settings: boolean;
+  readyForWork: boolean;
   updateCount: () => void;
   resetCount: () => void;
 };
@@ -23,8 +24,9 @@ export const Counter = (props: CounterType) => {
       />
       <ProgressBar count={props.count} maxCount={props.maxCount} />
       <ControlButtons
-        minCount={props.minCount}
         maxCount={props.maxCount}
+        minCount={props.minCount}
+        readyForWork={props.readyForWork}
         count={props.count}
         updateCount={props.updateCount}
         resetCount={props.resetCount}

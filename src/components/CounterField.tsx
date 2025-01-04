@@ -14,12 +14,15 @@ export const CounterField = (props: CounterProps) => {
         color:
           props.count === props.maxCount ||
           props.minCount < 0 ||
-          props.minCount === props.maxCount
+          props.minCount === props.maxCount ||
+          props.minCount > props.maxCount
             ? "red"
             : "#1babdb",
       }}
     >
-      {props.minCount >= 0 && props.minCount !== props.maxCount
+      {props.minCount >= 0 &&
+      props.minCount !== props.maxCount &&
+      props.minCount < props.maxCount
         ? props.settings
           ? "enter values and press 'set'"
           : props.count
