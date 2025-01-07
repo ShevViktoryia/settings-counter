@@ -22,7 +22,9 @@ export const ControlButtons = (props: ButtonProps) => {
       />
       <Button
         title="reset"
-        isDisable={props.count === props.minCount}
+        isDisable={
+          props.count === props.minCount || props.readyForWork === false
+        }
         onClick={props.resetCount}
       />
     </ControlButtonsStyled>

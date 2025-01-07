@@ -3,6 +3,8 @@ import styled from "styled-components";
 type ControlInputType = {
   title: string;
   value: number;
+  maxCount: number;
+  minCount: number;
   changeCount: (newCount: number) => void;
 };
 
@@ -14,6 +16,15 @@ export const ControlInput = (props: ControlInputType) => {
         type="number"
         value={props.value}
         onChange={(e) => props.changeCount(Number(e.currentTarget.value))}
+        style={{
+          background:
+            props.minCount < 0 ||
+            props.maxCount < 0 ||
+            props.maxCount < props.minCount ||
+            props.minCount === props.maxCount
+              ? "red"
+              : "white",
+        }}
       />
     </ControlInputStyled>
   );

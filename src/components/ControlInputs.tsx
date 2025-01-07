@@ -15,11 +15,15 @@ export const ControlInputs = (props: ControlInputsType) => {
         title="max"
         value={props.maxCount}
         changeCount={props.changeMaxCount}
+        maxCount={props.maxCount}
+        minCount={props.minCount}
       />
       <ControlInput
         title="min"
         value={props.minCount}
         changeCount={props.changeMinCount}
+        maxCount={props.maxCount}
+        minCount={props.minCount}
       />
     </ControlInputsStyled>
   );
