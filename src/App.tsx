@@ -15,7 +15,7 @@ function App() {
 
   let [count, setCount] = useState<number>(minCount);
   const [settings, setSettins] = useState<boolean>(false);
-  const [readyForWork, setReadyForWork] = useState<boolean>(false);
+  const [readyForWork, setReadyForWork] = useState<boolean>(true);
 
   useEffect(() => {
     debugger;
